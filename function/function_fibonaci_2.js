@@ -1,7 +1,10 @@
 // recursion
 function f1(number){
-	if(number == 0 || number == 1) return 1;
-	return f1(number - 1) + f1(number - 2);
+	if(number == 0 || number == 1) return 1
+	first_ouput_value = f1(number - 1) // 
+	second_output_value = f1(number - 2) //
+	
+	return first_ouput_value + second_output_value
 }
 
 // loop
@@ -17,3 +20,6 @@ function f2(number){
 
 	return a;
 }
+
+
+console.log(f1(5))
