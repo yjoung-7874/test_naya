@@ -1,0 +1,43 @@
+var sayings = new Map(); // Map 객체 선언
+sayings.set("dog", "woof"); // set 메서드로 값 추가
+sayings.set("cat", "meow"); // set 메서드로 값 추가
+sayings.set("elephant", "toot"); // set 메서드로 값 추가
+console.log(sayings.size); // size 속성으로 속성 개수 출력: 3
+console.log(sayings.get("fox")); // get 메서드로 요소 접근: 실패(undefined)
+console.log(sayings.has("bird")); // has 메서드로 Map에 요소가 있는지 확인: 거짓
+sayings.delete("dog"); // delete 메서드로 요소 삭제
+for (var [key, value] of sayings) { // 키와 값 각각에 대해 반복
+    console.log(key + " goes " + value); // 문장 출력: cat goes meow, elephant goes toot
+}
+for (var value of sayings) { // * 추가 코드: 키와 값을 나누지 않고 반복
+    console.log(value); // * 추가 코드: 키와 값이 둘 다 value 배열 형태로 한 번에 출력됨
+}
+console.log(sayings); // * 추가 코드: 전체 Map 객체를 출력
+
+const privates = new WeakMap(); // 위크맵 객체를 생성
+function Public() { // 함수 정의
+    const me = { // me 객체에 비밀정보를 담음
+        // private data
+    };
+    privates.set(this, me); // set 메서드로 privates 객체에 this=>me 항목 추가
+}
+Public.prototype.method = function () { // Public의 객체가 가지는 메서드를 정의
+    const me = privates.get(this); // privates에서 this(me)를 얻어오도록 하기
+    // me로 얻어온 private data로 무언가 하기
+};
+// module.exports = Public;
+
+var mySet = new Set(); // 새 집합 생성
+mySet.add(1); // 1 추가
+mySet.add("some text" ); // 문자열 추가
+mySet.add("foo"); // 문자열 추가
+console.log(mySet.has(1)); // 1이 있는지 판정: 참
+mySet.delete("foo"); // 요소 삭제
+console.log(mySet.size); // 크기 출력: 2
+for (let item of mySet) console.log(item); // 요소별로 출력: 1, some text
+for (let item in mySet) console.log(item); // * 추가 코드: 아무것도 출력되지 않음
+
+Array.from(mySet);
+mySet2 = new Set([5, 6, 7, 8])
+console.log([...mySet2]);
+mySet2= new  Set([1, 2, 3, 4]);
