@@ -37,7 +37,6 @@ console.log(mySet.size); // 크기 출력: 2
 for (let item of mySet) console.log(item); // 요소별로 출력: 1, some text
 for (let item in mySet) console.log(item); // * 추가 코드: 아무것도 출력되지 않음
 
-Array.from(mySet);
-mySet2 = new Set([5, 6, 7, 8])
-console.log([...mySet2]);
-mySet2= new  Set([1, 2, 3, 4]);
+Array.from(mySet); // 집합으로부터 배열 생성
+mySet2 = new Set([1, 2, 3, 4]); // 배열로부터 집합 생성
+console.log([...mySet2]); // * ??

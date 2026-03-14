@@ -1,0 +1,16 @@
+.profile {
+    border: 10px ridge #000000;
+    background-color: #EE9855;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.profile img {
+    width: 100%;
+    height: auto;
+}
+.profile h3 {
+    font: small-caps bold 1.2rem sans-serif;
+    text-align: center;
+}
