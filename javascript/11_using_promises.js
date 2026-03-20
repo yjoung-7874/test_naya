@@ -63,20 +63,24 @@ const promise3 = doSomething().then(successCallback, failureCallback);
 .catch(failureCallback); // 무언가 실패하면 실패 콜백 적용
 */ // 위의 예시를 화살표 함수를 사용하여 재구성
 
-new Promise((resolve, reject) => { // 콜백을 인자로 가지는 promise 선언
+new Promise((resolve, reject) => {
+	// 콜백을 인자로 가지는 promise 선언
 	console.log('Initial'); // 출력: Initial
 	resolve(); // 성공 호출
 })
-	.then(() => { // 성공하면
+	.then(() => {
+		// 성공하면
 		throw new Error('Something failed'); // 에러 발생시키기
 		console.log('Do this'); // 에러가 rejection 발생시켜서 실행되지 않음
 	})
-	.catch(() => { // 실패하면
+	.catch(() => {
+		// 실패하면
 		console.log('Do that'); // 출력: Do that
 	})
-	.then(() => { // * 앞의 둘 중 하나라도 성공하면??
+	.then(() => {
+		// * 앞의 둘 중 하나라도 성공하면??
 		console.log('Do this, whatever happened before');
-        // 출력: Do this, whatever happened before
+		// 출력: Do this, whatever happened before
 	});
 
 // ----- Error propagation -----
@@ -106,32 +110,36 @@ new Promise((resolve, reject) => { // 콜백을 인자로 가지는 promise 선�
 
 // ----- Promise rejection events -----
 
-window.addEventListener( // window에 이벤트 핸들러 부착
-    "unhandledrejection", // 핸들러 없는 reject에
-    (event) => { // event를 인수로 받아
-        // event.promise와 event.reason을 이용해서 reject된 promise를 분석
-        event.preventDefault(); // 윈도우의 기본 행동을 막고(NodeJS에서 콘솔에 오류 기록)
-    },
-    false, // * 왜 있음?
+/* window.addEventListener(
+	// window에 이벤트 핸들러 부착
+	'unhandledrejection', // 핸들러 없는 reject에
+	event => {
+		// event를 인수로 받아
+		// event.promise와 event.reason을 이용해서 reject된 promise를 분석
+		event.preventDefault(); // 윈도우의 기본 행동을 막고(NodeJS에서 콘솔에 오류 기록)
+	},
+	false, // * 왜 있음?
 ); // unhandledrejection 이벤트를 처리하는 핸들러 추가하는 코드
+*/ // window가 없는 VScode 환경이라 실행 불가능
 
 // ----- 오래된 콜백 API를 사용하여 Promise 만들기 -----
 
 //setTimeout(() => saySomething("10 seconds passed"), 10000);
 // 오래된 API 예시: saySomething 콜백이 정의되지 않았으므로 실행 불가
 
-const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+/* const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 // 문제가 되는 setTimeout을 Promise로 감싸 promise 객체로 wait에 할당
 wait(10000) // 10초 기다리기
-.then(() => saySomething("10 seconds")) // 성공하면 saySomething 수행
-.catch(failureCallback); // 실패 콜백
+	.then(() => saySomething('10 seconds')) // 성공하면 saySomething 수행
+	.catch(failureCallback); // 실패 콜백
+*/ // 콜백이 정의되지 않았으므로 실행 불가
 
 // ----- Composition -----
 
 /* Promise.all([func1(), func2(), func3()]) // Promise.all을 사용하여 여러
                                          // 비동기 작업을 병렬적으로 수행
 .then(([result1, result2, result3]) => {}); // * 각 콜백의 결과로 처리??
-*/ // 모든 비동기 작업이 완료될 때까지 기다리는 예시 
+*/ // 모든 비동기 작업이 완료될 때까지 기다리는 예시
 
 /* [func1, func2, func3] // 콜백들
 .reduce((p, f) => p.then(f), Promise.resolve()) // reduce 메서드를 적용해 then으로 처리
@@ -139,22 +147,67 @@ wait(10000) // 10초 기다리기
 */ // * 위의 코드와 같은 예시??
 
 const applyAsync = (acc, val) => acc.then(val); // 이전까지의 promise에 then 처리하는 함수
-const composeAsync = 
-(...funcs) => // 인자로 들어온 모든 함수를 배열로 모아 
-(x) => // * 초기값을 인자로 받아 ..??
-    funcs.reduce(applyAsync, Promise.resolve(x)); // * promise를 모은 것에 콜백을 하나씩 적용??
+const composeAsync =
+	(
+		...funcs // 인자로 들어온 모든 함수를 배열로 모아
+	) =>
+	(
+		x, // * 초기값을 인자로 받아 ..??
+	) =>
+		funcs.reduce(applyAsync, Promise.resolve(x)); // * promise를 모은 것에 콜백을 하나씩 적용??
 
 /* const transformData = composeAsync(func1, func2, func3); // 여러 함수를 인수로 받아
 const result3 = transformData(data); // * 파이프라인 통해 전달되는 초기값을 허용하는 새 함수 반환??
 */ // func1, 2, 3, data가 정의되지 않았으므로 실행 불가
 
-let result; // 결과를 저장할 변수 선언
-for (const f of [func1, func2, func3]) { // 각 함수에 대해서
-    result = await f(result); // 결과는 각 함수를 끝까지 실행한 뒤의 promise
+/* let result; // 결과를 저장할 변수 선언
+for (const f of [func1, func2, func3]) {
+	// 각 함수에 대해서
+	result = await f(result); // 결과는 각 함수를 끝까지 실행한 뒤의 promise
 }
 // result 사용
+*/ // 콜백을 정의하지 않았으므로 실행 불가능
 
 // ----- Timing -----
 
-Promise.resolve().then(() => console.log(2));
-console.log(1);
+Promise.resolve().then(() => console.log(2)); // resolve된 promise의 경우에도
+// 비동기적으로 호출
+console.log(1); // 출력: 1, 2 (* 왜 1이 먼저 출력되는지??)
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+// 입력된 시간만큼 기다리는 프로미스 만드는 함수 생성
+wait().then(() => console.log(4)); // 그 프로미스에 4 출력하도록 함
+Promise.resolve() // resolve된 프로미스에
+	.then(() => console.log(2)) // 2 출력하도록 함
+	.then(() => console.log(3)); // 3 출력하도록 함
+console.log(1); // 1 출력
+// 결과: 1, 2, 3, 4 (프로미스는 마이크로태스크 큐에서 기다림)
+
+/* doSomethingCritical() // 무언가 함
+.then((result) => doSomethingOptional(result) // 그 결과로 무언가 하고
+.then((optionalResult) => doSomethingExtraNice(optionalResult)) // 마찬가지
+.catch((e) => {}), // 예외 발생 시 아무것도 반환하지 않음
+) // 선택 사항이었으므로 실패해도 무시하고 진행
+.then(() => moreCriticalStuff()) // 무언가 하고
+.catch((e) => console.log("Critical failure: " + e.message));
+// 예외 발생 시 에러 메시지 출력
+*/ // 콜백들이 정의되어 있지 않으므로 실행 불가
+
+// ----- Common mistakes -----
+
+/* doSomething() // 무언가 함
+.then(function (result) { // 그리고 또 함수
+	doSomethingElse(result) // 실수: 프로미스를 반환하지 않음
+	.then((newResult) => doThirdThing(newResult)); // 그 결과로 또 무언가 함
+}) // 실수: 불필요하게 nesting된 구조
+.then(() => doFourthThing()); // 이어서 무언가 함, 실수: catch로 체인을 끝내지 않음
+*/ // 콜백들이 정의되어 있지 않으므로 실행 불가
+
+/* doSomething() // 무언가 함
+.then(function (result) { // 그리고 그 결과로
+	return doSomethingElse(result); // 또 다른 것을 함
+})
+.then((newResult) => doThirdThing(newResult)) // 그리고 그 결과로 또 다른 것을 함
+.then(() => doFourthThing()) // 그리고 또 다른 것을 함
+.catch((error) => console.log(error)); // 예외 발생 시 에러 메시지 출력
+*/ // 마찬가지로 실행 불가, 위의 코드의 실수를 고친 버전

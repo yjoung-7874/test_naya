@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+	<head>
+		<title>0320 Assignment</title>
+	</head>
+	<header>
+		<h1 style="color: #997740">Usage of tags:</h1>
+		<h5>
+			nav, p, b, map, img, a, h1-h6, script, html,
+            head, title, body, header, footer, form, button,
+            input, canvas, table, div, hr
+		</h5>
+		<hr>
+		<h3>Navigations</h3>
+		<nav>
+			<ul>
+                <li><a href="main.html">main</a></li>
+                <li><a href="taylor.html">Taylor</a></li>
+				<li><a href="maisie.html">Maisie</a></li>
+			</ul>
+		</nav>
+		<hr />
+	</header>
+    <body>
+        <p><b>Taylor Swift</b> is my all time favorite artist.</p>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Taylor Swift</td>
+            </tr>
+            <tr>
+                <td>Height</Td>
+                <td>180cm</td>
+            </tr>
+            <tr>
+                <td>Debut</td>
+                <td>2003</td>
+            </tr>
+            <tr>
+                <td>Album count</td>
+                <td>12</td>
+            </tr>
+        </table>
+        <h3>Album Names</h3>
+        <form id="form">
+            <input type="text" name="album">
+            <button type="submit">submit</button>
+        </form>
+        <p id="demo"></p>
+        <script src="album.js"></script>
+        <h3>Guitar</h3>
+        <canvas
+            id="canvas"
+            width="500"
+            height="120">
+        </canvas>
+        <script type="text/javascript">
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            ctx.globalCompositeOperation = "source-over";
+            ctx.fillStyle = "#997750";
+            ctx.fillRect(10, 10, 120, 100);
+            ctx.fillRect(240, 40, 60, 40);
+            ctx.fillStyle = "#FFDE80";
+            ctx.fillRect(30, 45, 210, 30);
+            ctx.fillStyle = "#553311";
+            ctx.fillRect(40, 40, 40, 40);
+        </script>
+    </body>
+    <footer>
+		<hr />
+		<p>Made by Naya Kim, in the middle of the night</p>
+	</footer>
+</html>
