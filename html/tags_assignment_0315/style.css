@@ -1,0 +1,28 @@
+header {
+	height: 200px;
+}
+.layout {
+	display: flex;
+}
+.sidenav {
+	height: calc(100vh - 200px);
+	width: 120px;
+	position: fixed;
+	z-index: 1;
+	top: 200px;
+	left: 0;
+	background-color: #be8e81;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+.sidenav a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #000000;
+	display: block;
+}
+main {
+	flex: 1;
+	margin-left: 120px;
+}
