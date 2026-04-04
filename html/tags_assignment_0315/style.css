@@ -1,28 +1,69 @@
+/* 기본 여백 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+/* 전체 컨테이너를 최소 화면 높이만큼 설정 */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 header {
-	height: 200px;
+    padding: 10px;
+    background-color: #fff;
 }
+
+/* 중간 레이아웃: 사이드바와 메인이 가로로 배치됨 */
 .layout {
-	display: flex;
+    display: flex;
+	padding: 10px;
+    flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
 }
+
 .sidenav {
-	height: calc(100vh - 200px);
-	width: 120px;
-	position: fixed;
-	z-index: 1;
-	top: 200px;
-	left: 0;
-	background-color: #be8e81;
-	overflow-x: hidden;
-	padding-top: 20px;
+    width: 150px;
+    background-color: #be8e81;
+    /* padding-top: 20px; */
 }
+
 .sidenav a {
-	padding: 6px 8px 6px 16px;
-	text-decoration: none;
-	font-size: 20px;
-	color: #000000;
-	display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #000;
+    display: block;
 }
+
+.sidenav a:hover {
+    background-color: #a37a6f; /* 마우스 올렸을 때 효과 */
+}
+
 main {
-	flex: 1;
-	margin-left: 120px;
+    flex: 1;
+	margin-left: 10px;
+    /* padding: 20px; */
+}
+
+main p {
+	margin-bottom: 20px;
+}
+
+/* 이미지 크기 조절을 위한 컨테이너 */
+.img-container img {
+    max-width: 100%; /* 부모 너비를 넘지 않게 조절 */
+    height: auto;
+}
+
+footer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: left;
 }
