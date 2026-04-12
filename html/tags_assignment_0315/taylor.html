@@ -2,63 +2,77 @@
 <html>
 	<head>
 		<title>0320 Assignment</title>
+        <link rel="stylesheet" href="style.css">
 	</head>
     <body>
-        <header>
-		<h1 style="color: #997740">My Favorite Singersongwriters</h1>
-		<h3>
-			5 artists I love: <b>Taylor Swift, Maisie Peters, Sasha Sloan, Conan Gray, and Alec Benjamin.</b>
-		</h3>
-		<hr>
-	</header>
-        <p><b>Taylor Swift</b> is my all time favorite artist.</p>
-        <table>
-            <tr>
-                <td>Name</td>
-                <td>Taylor Swift</td>
-            </tr>
-            <tr>
-                <td>Height</Td>
-                <td>180cm</td>
-            </tr>
-            <tr>
-                <td>Debut</td>
-                <td>2003</td>
-            </tr>
-            <tr>
-                <td>Album count</td>
-                <td>12</td>
-            </tr>
-        </table>
-        <h3>Album Names</h3>
-        <form id="form">
-            <input type="text" name="album">
-            <button type="submit">submit</button>
-        </form>
-        <p id="demo"></p>
-        <script src="album.js"></script>
-        <h3>Guitar</h3>
-        <canvas
-            id="canvas"
-            width="500"
-            height="120">
-        </canvas>
-        <script type="text/javascript">
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
-            ctx.globalCompositeOperation = "source-over";
-            ctx.fillStyle = "#997750";
-            ctx.fillRect(10, 10, 120, 100);
-            ctx.fillRect(240, 40, 60, 40);
-            ctx.fillStyle = "#FFDE80";
-            ctx.fillRect(30, 45, 210, 30);
-            ctx.fillStyle = "#553311";
-            ctx.fillRect(40, 40, 40, 40);
-        </script>
-        <footer>
-		<hr />
-		<p>Naya Kim, Incheon, South Korea <br>
-		phone : +82 010-5699-8842 | instagram : @nayaaa_kim | email : naya.a.kim42@gmail.com</p>
-	</footer>
+        <div class="container">
+            <header>
+                <h1 style="color: #997740">My Favorite Singersongwriters</h1>
+                <br/>
+                <h3>5 artists I love: <b>Taylor Swift, Maisie Peters, Sasha Sloan, Conan Gray, and Alec Benjamin.</b></h3>
+                <br/>
+                <hr />
+            </header>
+
+            <div class="layout">
+                <nav class="sidenav">
+                    <a href="main.html">main</a>
+                    <a href="taylor.html">Taylor</a>
+                    <a href="maisie.html">Maisie</a>
+                    <a href="embeded_chatbot/chatbot/index.html">QnA</a>
+                </nav>
+                <main>
+                    <p><b>Taylor Swift</b> is my all time favorite artist.</p>
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td>Taylor Swift</td>
+                        </tr>
+                        <tr>
+                            <td>Height</Td>
+                            <td>180cm</td>
+                        </tr>
+                        <tr>
+                            <td>Debut</td>
+                            <td>2003</td>
+                        </tr>
+                        <tr>
+                            <td>Album count</td>
+                            <td>12</td>
+                        </tr>
+                    </table>
+                    <h3>Album Names</h3>
+                    <form id="form">
+                        <input type="text" name="album">
+                        <button type="submit">submit</button>
+                    </form>
+                    <p id="demo"></p>
+                    <script src="album.js"></script>
+                    <h3>Guitar</h3>
+                    <canvas
+                        id="canvas"
+                        width="500"
+                        height="120">
+                    </canvas>
+                    <script type="text/javascript">
+                        var canvas = document.getElementById("canvas");
+                        var ctx = canvas.getContext("2d");
+                        ctx.globalCompositeOperation = "source-over";
+                        ctx.fillStyle = "#997750";
+                        ctx.fillRect(10, 10, 120, 100);
+                        ctx.fillRect(240, 40, 60, 40);
+                        ctx.fillStyle = "#FFDE80";
+                        ctx.fillRect(30, 45, 210, 30);
+                        ctx.fillStyle = "#553311";
+                        ctx.fillRect(40, 40, 40, 40);
+                    </script>
+                </main>
+            </div>
+            <footer>
+                <hr />
+                <p>Naya Kim, Incheon, South Korea <br>
+                phone : +82 010-5699-8842 | instagram : @nayaaa_kim | email : naya.a.kim42@gmail.com</p>
+            </footer>
+        </div>
     </body>
 </html>
